@@ -1,1 +1,38 @@
 @import "../bower_components/bootstrap/dist/css/bootstrap.css";
+@import "../fonts/overpass/Webfonts/recommended.css";
+#create #hedOptions h3 {
+  border: 1px solid #ddd;
+  padding: 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: center;
+  font-family: : Overpass;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+#create #hedOptions h3.selected {
+  outline: 2px solid #ccc;
+}
+#create #imgOptions img {
+  max-width: 100%;
+  margin: 10px 0;
+  cursor: pointer;
+}
+#create #imgOptions img.selected {
+  outline: 2px solid #ccc;
+}
+#view #flag img {
+  max-width: 100%;
+}
+#view #page-hed {
+  font-family: Overpass;
+  font-weight: 700;
+  font-size: 6em;
+  text-transform: uppercase;
+  color: black;
+  text-align: center;
+  letter-spacing: -5px;
+}
+#view #lead-img img {
+  max-width: 100%;
+}
