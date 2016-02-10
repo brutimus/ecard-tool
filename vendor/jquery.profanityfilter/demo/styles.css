@@ -1,0 +1,164 @@
+html {
+    min-height: 100%;
+}
+
+body {
+    font-family: monospace;
+    margin: 0, auto;
+    background: -webkit-linear-gradient(top, rgba(76, 76, 76, 1) 0%, rgba(38, 38, 38, 1) 100%);
+    background: -moz-linear-gradient(top, rgba(76, 76, 76, 1) 0%, rgba(38, 38, 38, 1) 100%);
+    background: -o-linear-gradient(top, rgba(76, 76, 76, 1) 0%, rgba(38, 38, 38, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(76, 76, 76, 1) 0%, rgba(38, 38, 38, 1) 100%);
+    background: linear-gradient(top, rgba(76, 76, 76, 1) 0%, rgba(38, 38, 38, 1) 100%);
+}
+
+h1 {
+    font-size: 5em;
+    color: #ccc;
+    -moz-text-shadow: 3px 3px 2px #333;
+    -webkit-text-shadow: 3px 3px 2px #333;
+    text-shadow: 3px 3px 2px #333;
+}
+
+h2 {
+    font-size: 2em;
+    margin-top: -30px;
+    color: #ccc;
+    -moz-text-shadow: 3px 3px 2px #333;
+    -webkit-text-shadow: 3px 3px 2px #333;
+    text-shadow: 3px 3px 2px #333;
+}
+
+footer {
+    width: 760px;
+    margin: 0 auto;
+    font-size: .9em;
+}
+
+#wrapper {
+    text-align: center;
+}
+
+.box {
+    background-color: #ccc;
+    text-align: left;
+    font-family: monospace, serif;
+    color: #444;
+    border: 1px solid #333;
+    padding: 10px;
+    -webkit-box-shadow: 0 0 5px #333;
+    -moz-box-shadow: 0 0 5px #333;
+    box-shadow: 0 0 5px #333;
+}
+
+section {
+    /*background-color: orange;*/
+    margin: 30px auto;
+    width: 760px;
+    overflow: hidden;
+    padding: 0;
+    min-height: 100px;
+}
+
+section.description-example-wrapper {
+    float: left;
+}
+
+section pre {
+    float: right;
+}
+
+.description {
+    width: 400px;
+    font-family: verdana, sans-serif;
+    font-size: .9em;
+    margin-bottom: 10px;
+}
+
+.code {
+    margin: 0;
+    width: 300px;
+    height: 100%;
+    font-size: .9em;
+    padding: 10px;
+}
+
+.example {
+    width: 400px;
+    font-family: arial, sans-serif;
+    font-size: .9em;
+    font-style: italic;
+    height: 100%;
+}
+
+.github {
+    position: absolute;
+    top: 0px;
+    right: 0px
+}
+
+#githubRibbon{
+	height: 149px;
+	width: 149px;
+	overflow:hidden;
+	padding: 0;
+	margin: 0;
+    position: absolute;
+    top:0;
+    right:0;
+}
+
+#githubRibbon a{
+
+	display: block;
+	width: 190px;
+	font-size: 14px;
+	font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT",
+		"Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma,
+		Geneva, "Helvetica Neue", Helvetica, Arial, sans serif;
+	background-color: #333;
+	color: #FFF;
+	word-spacing: 2px;
+	text-decoration: none;
+	padding: 5px 15px 5px 25px;
+
+	position:relative;
+	left: 20px;
+	top: -37px;
+	text-align: center;
+
+	-moz-transform-origin: 0 0 ;
+	-moz-transform:rotate(45deg);
+	-moz-box-shadow:    1px 1px 5px 1px #666;
+
+	-webkit-transform-origin: 0 0 ;
+	-webkit-transform:rotate(45deg);
+	-webkit-box-shadow: 1px 1px 5px 1px #666;
+
+	-ms-transform-origin: 0 0 ;
+	-ms-transform:rotate(45deg);
+	-ms-box-shadow: 1px 1px 5px 1px #666;
+
+	transform-origin: 0 0 ;
+	transform:rotate(45deg);
+	box-shadow: 1px 1px 5px 1px #666;
+
+	background-image: linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+	background-image: -o-linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+	background-image: -moz-linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+	background-image: -webkit-linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+	background-image: -ms-linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.03, #000000),
+		color-stop(0.05, #666666),
+		color-stop(0.07, #000000),
+		color-stop(0.93, #000000),
+		color-stop(0.95, #666666),
+		color-stop(0.97, #000000)
+	);
+
+}
