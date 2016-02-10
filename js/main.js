@@ -1,5 +1,7 @@
 //@codekit-prepend "../bower_components/jquery/dist/jquery.js"
 //@codekit-prepend "./html2canvas.js"
+//@codekit-prepend "../vendor/jquery.profanityfilter/jquery.profanityfilter.js"
+//@codekit-prepend "../vendor/social-share-kit/js/social-share-kit.js"
 
 if (!String.prototype.format) {
   String.prototype.format = function() {
@@ -13,17 +15,58 @@ if (!String.prototype.format) {
   };
 }
 
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
 jQuery(document).ready(function($) {
+
+  SocialShareKit.init();
+
   var hed_choices = [
-    'Happy Valentines Day, {0}'
-  ],
-      img_choices = [];
+        'Happy Valentine&#8217;s Day<br><b>{0}!</b>',
+        'Valentine of the year?<br><b>{0}!</b>',
+        'GUESS WHO IS MY BAE?<br><b>{0}!</b>',
+        'QUEEN OF THE BEACH?<br><b>{0}!</b>',
+        'KING OF THE BEACH?<br><b>{0}!</b>',
+        'HUGS ARE BETTER WITH<br><b>{0}!</b>',
+        'LOVE GODDESS OF YEAR<br><b>{0}!</b>',
+        'OC LOVE GOD OF YEAR<br><b>{0}!</b>',
+        'WHO IS LOVED VERY MUCH?<br><b>{0}!</b>',
+        'MOST LOVED PERSON IN OC?<br><b>{0}!</b>'
+      ],
+      img_choices = [
+        ['static/{0}/1.jpg', 'Paul Bersebach, STAFF PHOTOGRAPHER'],
+        ['static/{0}/2.jpg', 'MICHAEL GOULDING, STAFF PHOTOGRAPHER'],
+        ['static/{0}/3.jpg', 'Mark Rightmire, STAFF PHOTOGRAPHER'],
+        ['static/{0}/4.jpg', 'CINDY YAMANAKA, STAFF PHOTOGRAPHER'],
+        ['static/{0}/5.jpg', 'MARK RIGHTMIRE, STAFF PHOTOGRAPHER'],
+        ['static/{0}/6.jpg', 'BILL ALKOFER, STAFF PHOTOGRAPHER']
+      ],
+      dummy_name = "John Doe";
 
   // CREATE PAGE
   if ($('#create').length > 0){
-    $('#hedOptions h3').click(function(e){
+    $.each(hed_choices, function(i, v){
+      $('#hedOptions').append($('<div class="col-md-6">').append($('<h4>').html(v.format(dummy_name)).data('id', i)));
+    });
+    $.each(img_choices, function(i, v){
+      $('#imgOptions').append($('<div class="col-md-4">').append($('<img>').attr('src', v[0].format('thumb')).data('id', i)));
+    });
+    $('#hedOptions h4').click(function(e){
       $('#hedInput').val($(this).data('id'));
-      $('#hedOptions h3').removeClass('selected');
+      $('#hedOptions h4').removeClass('selected');
       $(this).addClass('selected');
     });
 
@@ -37,28 +80,68 @@ jQuery(document).ready(function($) {
 
       // VALIDATE
       var name = $('#nameInput').val(),
+          fromName = $('#fromInput').val(),
           note = $('#noteInput').val(),
           img = $('#imgInput').val(),
           hed = $('#hedInput').val();
 
-      console.log($.grep([name, note, img, hed], function(n, i){
-        return n.length > 0;
-      }));
-      if ($.grep([name, note, img, hed], function(n, i){
+      // PROFANITY
+      $(document).profanityFilter({
+          externalSwears: '../vendor/jquery.profanityfilter/swearWords.json',
+          filter: false,
+          customSwears: [
+            'curley',
+            'mirman',
+            'kushner',
+            'sofaking'],
+          profaneText: function(data) {
+              alert('Please do not use swear words!');
+              e.preventDefault();
+          }
+      });
+      if ($.grep([name, fromName, note, img, hed], function(n, i){
         return n.length < 1;
       }).length > 0) {
         alert('Please fill in all the fields before continuing!');
+        e.preventDefault();
       }
-      e.preventDefault();
-
-
-
     });
   }
 
   // VIEW PAGE
   if ($('#view').length > 0){
-    console.log('create')
+    var name = getUrlParameter('na'),
+        note = getUrlParameter('no'),
+        fromName = getUrlParameter('f'),
+        hed = parseInt(getUrlParameter('h')),
+        img = parseInt(getUrlParameter('i'));
+
+    $('#page-hed').html(hed_choices[hed].format(name));
+    $('#lead-img').append($('<img>').attr('src', img_choices[img][0].format('full')));
+    $('#lead-img-credit').text(img_choices[img][1]);
+    $('#lead-story').html(note.replace(/\+/g, " "));
+    $('#lead-name').text('- ' + fromName);
+
+    $(document).profanityFilter({
+        externalSwears: '../vendor/jquery.profanityfilter/swearWords.json',
+        filter: false,
+        customSwears: [
+          'curley',
+          'mirman',
+          'kushner',
+          'sofaking'],
+        profaneText: function(data) {
+          $('body').empty();
+          alert("You've used a restricted word. Please go back and fix this mistake.");
+        }
+    });
+
+    $('#downloadButton').click(function(e){
+      html2canvas($('#eCard')[0]).then(function(canvas) {
+        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        window.location.href = image; // it will save locally
+      });
+    });
   }
 
 });

@@ -12,27 +12,44 @@
     <body id="view">
         <div class="container">
           <div class="row">
-            <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+            <div id="eCard" class="col-xs-12 col-lg-8 col-lg-offset-2">
               <div id="flag" class="row">
                 <div class="col-xs-12">
-                  <img src="https://placehold.it/1000x250" alt="">
+                  <img src="static/flag.jpg" alt="">
                 </div>
               </div>
               <div class="row">
                 <div class="col-xs-12">
-                  <h1 id="page-hed">
-                    Happy Valentines Day, {{name}}
-                  </h1>
+                  <h1 id="page-hed"></h1>
                 </div>
               </div>
               <div class="row">
-                <div id="lead-img" class="col-xs-9">
-                  <img src="https://placehold.it/900x600" alt="">
+                <div class="col-xs-8">
+                  <div id="lead-img"></div>
+                  <p id="lead-img-credit"></p>
                 </div>
-                <div id="lead-story" class="col-xs-3">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut incidunt, placeat alias eos facilis, nulla laborum in error aspernatur ipsam ex debitis animi cupiditate exercitationem illum explicabo voluptatum impedit rerum.</p>
+                <div class="col-xs-4">
+                  <img id="lead-quote" src="static/quote.jpg" alt="">
+                  <p id="lead-story"></p>
+                  <p id="lead-name"></p>
                 </div>
               </div>
+            </div>
+            <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+              <footer class="pageFooter">
+                <ul class="navLinks">
+                  <li><button type="button" class="btn btn-default" style="margin-top:-7px;" id="downloadButton">Download</button></li>
+                  <li><a href="http://www.ocregister.com">Return to ocregister.com</a></li>
+                  <li><a href="http://projects.ocregister.com/valentines-ecard/create.html">Create a new E-Card</a></li>
+                  <li style="float:right;">
+                    <div class="ssk-group center-block">
+                      <a href="" class="ssk ssk-icon ssk-facebook"></a>
+                      <a href="" class="ssk ssk-icon ssk-twitter"></a>
+                      <a href="" class="ssk ssk-icon ssk-email"></a>
+                    </div>
+                  </li>
+                </ul>
+              </footer>
             </div>
           </div>
         </div>

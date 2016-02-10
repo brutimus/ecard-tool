@@ -1,17 +1,36 @@
 @import "../bower_components/bootstrap/dist/css/bootstrap.css";
-@import "../fonts/overpass/Webfonts/recommended.css";
+@import "../fonts/bebas-neue/stylesheet.css";
+@import "../vendor/social-share-kit/css/social-share-kit.css";
 
+body {
+	font-size: 14px;
+}
+
+#eCard {
+	background-color: white;
+}
 
 #create {
+	.pageHead {
+		font-family: 'bebas_neue';
+		font-weight: 300;
+		text-align: center;
+	}
+	.formHead {
+		font-family: 'bebas_neue';
+		font-weight: 400;
+		text-align: center;
+		border-bottom: 1px solid #eee;
+		padding-bottom: 5px;
+	}
 	#hedOptions {
-		h3 {
+		h4 {
+			font-family: 'bebas_neue';
 			border: 1px solid #ddd;
 			padding: 5px;
 			border-radius: 2px;
 			cursor: pointer;
 			text-align: center;
-			font-family: : Overpass;
-			font-weight: 700;
 			text-transform: uppercase;
 
 			&.selected {
@@ -36,18 +55,17 @@
 #view {
 	#flag {
 		img {
-			max-width: 100%;
+			width: 100%;
 		}
 	}
 
 	#page-hed {
-		font-family: Overpass;
-		font-weight: 700;
-		font-size: 6em;
+		font-family: 'bebas_neue';
+		font-size: 5em;
+		font-weight: 300;
+		line-height: 0.9em;
 		text-transform: uppercase;
-		color: black;
 		text-align: center;
-		letter-spacing: -5px;
 	}
 
 	#lead-img {
@@ -56,7 +74,97 @@
 		}
 	}
 
-	#lead-story {
+	#lead-img-credit {
+		font-family: 'arial';
+		font-size: 0.8em;
+		font-weight: 300;
+		text-transform: uppercase;
+	}
 
+	#lead-quote {
+		position: absolute;
+		top: 0;
+		left: -10px;
+	}
+
+	#lead-story {
+		font-family: arial;
+		font-size: 1.2em;
+		line-height: 1.2em;
+		padding-left: 15px;
+	}
+
+	#lead-name {
+		font-family: arial;
+		font-weight: 700;
+		font-size: 1em;
+		line-height: 1em;
+		padding-left: 15px;
+	}
+}
+
+.pageFooter {
+	background-color: #eee;
+	margin-top: 100px;
+	overflow: auto;
+	.navLinks {
+		padding: 20px 10px;
+		overflow: auto;
+		margin: 0;
+		li {
+			float: left;
+			padding: 0 10px;
+			margin: 0;
+			list-style: none;
+			font-family: 'bebas_neue';
+			text-transform: uppercase;
+			letter-spacing: 0.1px;
+
+			a {
+				color: #41759a;
+			}
+		}
+	}
+}
+
+.ssk-group {
+	width: 82px;
+	.ssk-icon {
+		color: #41759a !important;
+	}
+	.ssk:before {
+		font-size: 0.8em;
+		line-height: 0.6em;
+	}
+}
+
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 479px) {
+	body {
+		font-size: 8px;
+	}
+}
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+	body {
+		font-size: 12px;
+	}
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+	body {
+		font-size: 14px;
+	}
+}
+/* tablets/desktops and up ----------- */
+@media (min-width: 992px) and (max-width: 1199px) {
+	body {
+		font-size: 14px;
+	}
+}
+/* large desktops and up ----------- */
+@media screen and (min-width: 1200px) {
+	body {
+		font-size: 14px;
 	}
 }
