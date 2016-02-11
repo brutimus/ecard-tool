@@ -32,8 +32,6 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 jQuery(document).ready(function($) {
 
-  SocialShareKit.init();
-
   var hed_choices = [
         'Happy Valentine&#8217;s Day<br><b>{0}!</b>',
         'Valentine of the year?<br><b>{0}!</b>',
@@ -54,7 +52,8 @@ jQuery(document).ready(function($) {
         ['static/{0}/5.jpg', 'MARK RIGHTMIRE, STAFF PHOTOGRAPHER'],
         ['static/{0}/6.jpg', 'BILL ALKOFER, STAFF PHOTOGRAPHER']
       ],
-      dummy_name = "John Doe";
+      dummy_name = "John Doe",
+      share_title = "Build a front page as a custom Valentine's Day card!";
 
   // CREATE PAGE
   if ($('#create').length > 0){
@@ -87,13 +86,8 @@ jQuery(document).ready(function($) {
 
       // PROFANITY
       $(document).profanityFilter({
-          externalSwears: '../vendor/jquery.profanityfilter/swearWords.json',
+          externalSwears: './vendor/jquery.profanityfilter/swearWords.json',
           filter: false,
-          customSwears: [
-            'curley',
-            'mirman',
-            'kushner',
-            'sofaking'],
           profaneText: function(data) {
               alert('Please do not use swear words!');
               e.preventDefault();
@@ -110,26 +104,21 @@ jQuery(document).ready(function($) {
 
   // VIEW PAGE
   if ($('#view').length > 0){
-    var name = getUrlParameter('na'),
-        note = getUrlParameter('no'),
-        fromName = getUrlParameter('f'),
-        hed = parseInt(getUrlParameter('h')),
+    var name = getUrlParameter('na').replace(/\+/g, " "),
+        note = getUrlParameter('no').replace(/\+/g, " "),
+        fromName = getUrlParameter('f').replace(/\+/g, " "),
+        share_title = hed = hed_choices[parseInt(getUrlParameter('h'))].format(name),
         img = parseInt(getUrlParameter('i'));
 
-    $('#page-hed').html(hed_choices[hed].format(name));
+    $('#page-hed').html(hed);
     $('#lead-img').append($('<img>').attr('src', img_choices[img][0].format('full')));
     $('#lead-img-credit').text(img_choices[img][1]);
-    $('#lead-story').html(note.replace(/\+/g, " "));
+    $('#lead-story').html(note + '&#8221;');
     $('#lead-name').text('- ' + fromName);
 
     $(document).profanityFilter({
-        externalSwears: '../vendor/jquery.profanityfilter/swearWords.json',
+        externalSwears: './vendor/jquery.profanityfilter/swearWords.json',
         filter: false,
-        customSwears: [
-          'curley',
-          'mirman',
-          'kushner',
-          'sofaking'],
         profaneText: function(data) {
           $('body').empty();
           alert("You've used a restricted word. Please go back and fix this mistake.");
@@ -143,5 +132,15 @@ jQuery(document).ready(function($) {
       });
     });
   }
+
+  SocialShareKit.init({
+    title: share_title.replace(/<br>/g, " ").replace(/<b>/g, "").replace(/<\/b>/g, "").toUpperCase()
+  });
+
+  var zc = new ZeroClipboard( document.getElementById("copyButton") );
+  zc.on( "copy", function (event) {
+    var clipboard = event.clipboardData;
+    clipboard.setData( "text/plain", document.location.href );
+  });
 
 });

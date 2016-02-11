@@ -1,0 +1,41 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta property="og:image" content="http://projects.ocregister.com/valentines-ecard/img/cover.jpg" />
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.34.min.js"></script>
+    </head>
+    <body id="view">
+      <input type="file" id="file-chooser" />
+      <button id="upload-button">Upload to S3</button>
+      <div id="results"></div>
+
+      <script type="text/javascript">
+      var bucket = new AWS.S3({params: {Bucket: 'projects.ocregister.com'}});
+
+      var fileChooser = document.getElementById('file-chooser');
+      var button = document.getElementById('upload-button');
+      var results = document.getElementById('results');
+      button.addEventListener('click', function() {
+        var file = fileChooser.files[0];
+        if (file) {
+          results.innerHTML = '';
+
+          var params = {Key: file.name, ContentType: file.type, Body: file};
+          bucket.upload(params, function (err, data) {
+            results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
+          });
+        } else {
+          results.innerHTML = 'Nothing to upload.';
+        }
+      }, false);
+      </script>
+        <script src="js/min/main-min.js"></script>
+    </body>
+</html>
